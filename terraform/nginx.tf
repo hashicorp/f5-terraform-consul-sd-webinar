@@ -1,5 +1,5 @@
 resource "aws_instance" "nginx" {
-    count = 5
+    count = "${var.server_count}"
 
     ami = "ami-08b314ce48a790a19" #Ubuntu
     instance_type = "t2.micro"

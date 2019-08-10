@@ -4,5 +4,6 @@
 # .tfstate files
 *.tfstate
 *.tfstate.*
+*.tfvars
 
 *.pem

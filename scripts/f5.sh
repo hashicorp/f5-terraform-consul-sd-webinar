@@ -82,7 +82,7 @@ logger -p local0.info 'firstrun debug: starting-tmsh-config'
 #tmsh modify auth user admin { password 6xEIT6dc@6YPqiM }
 #tmsh modify auth user admin shell bash
 #tmsh save /sys config
-checkStatusnoret
+#checkStatusnoret
 #tmsh modify sys global-settings gui-setup disabled
 #tmsh modify /sys http auth-pam-validate-ip off
 #tmsh create net vlan external interfaces add { 1.1 { untagged } }

@@ -34,7 +34,7 @@ Group=consul
 ExecStart=/usr/local/bin/consul agent -config-dir=/etc/consul.d/
 ExecReload=/usr/local/bin/consul reload
 KillMode=process
-Restart=on-failure
+Restart=always
 LimitNOFILE=65536
 
 [Install]
@@ -62,8 +62,6 @@ client_addr = "0.0.0.0"
 EOF
 
 #Enable the service
-sudo service systemctl daemon-reload
-sudo service consul enable
-sudo service consul stop
+sudo systemctl enable consul
 sudo service consul start
 sudo service consul status

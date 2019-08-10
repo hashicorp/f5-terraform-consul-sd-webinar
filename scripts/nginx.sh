@@ -37,7 +37,7 @@ Group=consul
 ExecStart=/usr/local/bin/consul agent -config-dir=/etc/consul.d/
 ExecReload=/usr/local/bin/consul reload
 KillMode=process
-Restart=on-failure
+Restart=always
 LimitNOFILE=65536
 
 [Install]
@@ -80,9 +80,7 @@ cat << EOF > /etc/consul.d/nginx.json
 EOF
 
 #Enable the service
-sudo service systemctl daemon-reload
-sudo service consul enable
-sudo service consul stop
+sudo systemctl enable consul
 sudo service consul start
 sudo service consul status
 
@@ -98,6 +96,7 @@ web:
   image: nginx
   ports:
   - "80:80"
+  restart: always
   command: [nginx-debug, '-g', 'daemon off;']
 EOF
 sudo docker-compose up -d

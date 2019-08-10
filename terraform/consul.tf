@@ -1,6 +1,6 @@
 resource "aws_instance" "consul" {
     ami = "ami-08b314ce48a790a19" #Ubuntu
-    instance_type = "${var.instance_type}"
+    instance_type = "t2.medium"
     associate_public_ip_address = true
     private_ip = "10.0.2.10"
     availability_zone = "${aws_subnet.internal.availability_zone}"
