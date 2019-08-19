@@ -1,6 +1,6 @@
 resource "aws_instance" "F5" {
     ami = "ami-00a9fd893d5d15cf6"
-    instance_type = "m4.xlarge"
+    instance_type = "m5.xlarge"
     private_ip = "10.0.0.200"
     associate_public_ip_address = true
     availability_zone = "${aws_subnet.management.availability_zone}"

@@ -1,4 +1,3 @@
-# Create a VPC to launch our instances into
 resource "aws_vpc" "abc" {
   cidr_block = "10.0.0.0/16"
   tags {
@@ -6,7 +5,6 @@ resource "aws_vpc" "abc" {
   }
 }
 
-# Create an internet gateway to give our subnet access to the outside world
 resource "aws_internet_gateway" "default" {
   vpc_id = "${aws_vpc.abc.id}"
   tags {
@@ -14,7 +12,6 @@ resource "aws_internet_gateway" "default" {
   }
 }
 
-# Grant the VPC internet access on its main route table
 resource "aws_route" "internet_access" {
   route_table_id         = "${aws_vpc.abc.main_route_table_id}"
   destination_cidr_block = "0.0.0.0/0"
@@ -31,7 +28,6 @@ resource "aws_route_table_association" "route_table_internal" {
     route_table_id = "${aws_vpc.abc.main_route_table_id}"
 }
 
-# Create a management subnet to launch our instances into
 resource "aws_subnet" "management" {
   vpc_id                  = "${aws_vpc.abc.id}"
   cidr_block              = "10.0.0.0/24"
@@ -42,7 +38,6 @@ resource "aws_subnet" "management" {
   }
 }
 
-# Create an external subnet to launch our instances into
 resource "aws_subnet" "external" {
   vpc_id                  = "${aws_vpc.abc.id}"
   cidr_block              = "10.0.1.0/24"
@@ -53,7 +48,6 @@ resource "aws_subnet" "external" {
   }
 }
 
-# Create an internal subnet to launch our instances into
 resource "aws_subnet" "internal" {
   vpc_id                  = "${aws_vpc.abc.id}"
   cidr_block              = "10.0.2.0/24"
@@ -84,7 +78,7 @@ resource "aws_network_interface" "external" {
     }
 }
 
-resource "aws_eip" "eip_vip" {
+resource "aws_eip" "vs_vip" {
   vpc                       = true
   network_interface         = "${aws_network_interface.external.id}"
   associate_with_private_ip = "10.0.1.202"
@@ -241,7 +235,6 @@ resource "aws_security_group" "nginx" {
   }
 }
 
-
 resource "aws_security_group" "consul" {
   name        = "consul"
   vpc_id      = "${aws_vpc.abc.id}"
@@ -267,7 +260,6 @@ resource "aws_security_group" "consul" {
     cidr_blocks = ["10.0.0.0/16"]
   }
 
-
   ingress {
     from_port = 8301
     to_port = 8301
@@ -275,8 +267,6 @@ resource "aws_security_group" "consul" {
     cidr_blocks = ["10.0.0.0/16"]
   }
 
-
-  # outbound internet access
   egress {
     from_port   = 0
     to_port     = 0

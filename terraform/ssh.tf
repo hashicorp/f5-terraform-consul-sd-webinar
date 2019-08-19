@@ -2,7 +2,6 @@ resource "tls_private_key" "demo" {
   algorithm = "RSA"
 }
 
-#A key pair is used to control login access to EC2 instances
 resource "aws_key_pair" "demo" {
   public_key = "${tls_private_key.demo.public_key_openssh}"
 }
