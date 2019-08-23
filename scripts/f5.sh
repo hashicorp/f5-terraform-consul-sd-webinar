@@ -2,7 +2,7 @@
 
 #wait for big-ip
 logger -p local0.info 'firstrun debug: waiting for big-ip'
-sleep 120
+sleep 180
 
 #configure big-ip
 logger -p local0.info 'firstrun debug: starting tmsh config'
@@ -18,4 +18,6 @@ tmsh create net self 10.0.1.200 address 10.0.1.200/24 vlan external
 tmsh create net vlan internal interfaces add { 1.2 { untagged } }
 tmsh create net self 10.0.2.200 address 10.0.2.200/24 vlan internal
 
-tmsh save /sys config
+tmsh modify net self-allow defaults all
+
+tmsh save sys config
