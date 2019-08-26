@@ -22,6 +22,9 @@
         },
         "web_pool": {
           "class": "Pool",
+          "monitors": [
+            "http"
+          ],
           "members": [
             {
               "servicePort": 80,
