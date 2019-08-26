@@ -16,7 +16,7 @@
           "class": "Service_HTTP",
           "virtualPort": 8080,
           "virtualAddresses": [
-            "10.0.1.202"
+            "10.0.0.200"
           ],
           "pool": "web_pool"
         },
@@ -27,7 +27,7 @@
               "servicePort": 80,
               "addressDiscovery": "consul",
               "updateInterval": 5,
-              "uri": "http://10.0.2.10:8500/v1/catalog/service/nginx"
+              "uri": "http://10.0.0.10:8500/v1/catalog/service/nginx"
             }
           ]
         }

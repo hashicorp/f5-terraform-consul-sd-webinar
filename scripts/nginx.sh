@@ -58,7 +58,7 @@ EOF
 
 cat << EOF > /etc/consul.d/client.hcl
 advertise_addr = "${local_ipv4}"
-retry_join = ["10.0.2.10"]
+retry_join = ["provider=aws tag_key=Env tag_value=consul"]
 EOF
 
 cat << EOF > /etc/consul.d/nginx.json
