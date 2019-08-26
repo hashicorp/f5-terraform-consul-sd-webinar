@@ -1,28 +1,12 @@
-data "aws_ami" "ubuntu" {
-  most_recent = true
-
-  filter {
-    name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-*"]
-  }
-
-  filter {
-    name   = "virtualization-type"
-    values = ["hvm"]
-  }
-
-  owners = ["099720109477"] # Canonical
-}
-
 resource "aws_launch_configuration" "nginx" {
-  name_prefix   = "nginx-"
-  image_id      = "${data.aws_ami.ubuntu.id}"
-  instance_type = "t2.micro"
+  name_prefix                 = "nginx-"
+  image_id                    = "${data.aws_ami.ubuntu.id}"
+  instance_type               = "t2.micro"
   associate_public_ip_address = true
 
   security_groups = ["${aws_security_group.nginx.id}"]
-  key_name = "${aws_key_pair.demo.key_name}"
-  user_data = "${file("../scripts/nginx.sh")}"
+  key_name        = "${aws_key_pair.demo.key_name}"
+  user_data       = "${file("../scripts/nginx.sh")}"
 
   iam_instance_profile = "${aws_iam_instance_profile.consul.name}"
 

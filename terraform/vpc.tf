@@ -1,12 +1,12 @@
 module "vpc" {
-  source = "terraform-aws-modules/vpc/aws"
-  version = "~> v1.0"
+  source  = "terraform-aws-modules/vpc/aws"
+  version = "~> v2.0"
 
   name = "f5-vpc"
   cidr = "10.0.0.0/16"
 
-  azs             = ["us-east-1a"]
-  public_subnets  = ["10.0.0.0/24"]
+  azs            = ["us-east-1a"]
+  public_subnets = ["10.0.0.0/24"]
 
   enable_nat_gateway = true
 
@@ -21,27 +21,27 @@ resource "aws_eip" "f5" {
 }
 
 resource "aws_security_group" "f5" {
-  name        = "f5"
-  vpc_id      = "${module.vpc.vpc_id}"
+  name   = "f5"
+  vpc_id = "${module.vpc.vpc_id}"
 
   ingress {
-    from_port = 22
-    to_port = 22
-    protocol = "tcp"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
   ingress {
-    from_port = 8443
-    to_port = 8443
-    protocol = "tcp"
+    from_port   = 8443
+    to_port     = 8443
+    protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
   ingress {
-    from_port = 8080
-    to_port = 8080
-    protocol = "tcp"
+    from_port   = 8080
+    to_port     = 8080
+    protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
@@ -55,37 +55,37 @@ resource "aws_security_group" "f5" {
 
 
 resource "aws_security_group" "nginx" {
-  name        = "nginx"
-  vpc_id      = "${module.vpc.vpc_id}"
+  name   = "nginx"
+  vpc_id = "${module.vpc.vpc_id}"
 
   ingress {
-    from_port = 22
-    to_port = 22
-    protocol = "tcp"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
   ingress {
-    from_port = 80
-    to_port = 80
-    protocol = "tcp"
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
     cidr_blocks = ["10.0.0.0/16"]
   }
 
   ingress {
-    from_port = 8300
-    to_port = 8300
-    protocol = "tcp"
+    from_port   = 8300
+    to_port     = 8300
+    protocol    = "tcp"
     cidr_blocks = ["10.0.0.0/16"]
   }
 
   ingress {
-    from_port = 8301
-    to_port = 8301
-    protocol = "tcp"
+    from_port   = 8301
+    to_port     = 8301
+    protocol    = "tcp"
     cidr_blocks = ["10.0.0.0/16"]
   }
-  
+
   egress {
     from_port   = 0
     to_port     = 0
@@ -95,34 +95,34 @@ resource "aws_security_group" "nginx" {
 }
 
 resource "aws_security_group" "consul" {
-  name        = "consul"
-  vpc_id      = "${module.vpc.vpc_id}"
+  name   = "consul"
+  vpc_id = "${module.vpc.vpc_id}"
 
   ingress {
-    from_port = 22
-    to_port = 22
-    protocol = "tcp"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
   ingress {
-    from_port = 8500
-    to_port = 8500
-    protocol = "tcp"
+    from_port   = 8500
+    to_port     = 8500
+    protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
   ingress {
-    from_port = 8300
-    to_port = 8300
-    protocol = "tcp"
+    from_port   = 8300
+    to_port     = 8300
+    protocol    = "tcp"
     cidr_blocks = ["10.0.0.0/16"]
   }
 
   ingress {
-    from_port = 8301
-    to_port = 8301
-    protocol = "tcp"
+    from_port   = 8301
+    to_port     = 8301
+    protocol    = "tcp"
     cidr_blocks = ["10.0.0.0/16"]
   }
 
