@@ -1,3 +1,8 @@
+resource "random_string" "password" {
+  length  = 10
+  special = false
+}
+
 resource "aws_instance" "f5" {
 
   #F5 BIGIP-14.1.0.3-0.0.6 PAYG-Good 25Mbps-190326002717
