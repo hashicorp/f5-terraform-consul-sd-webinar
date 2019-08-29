@@ -33,4 +33,4 @@ nginx.sh is used to install consul agent on nginx servers
 - BIG-IP image used is 14.1 version
 - AS3 rpm used is 3.7.0 version
 - HashiCorp & F5 webinar based on https://clouddocs.f5.com/cloud/public/v1/aws/AWS_singleNIC.html
--
+
