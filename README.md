@@ -14,6 +14,7 @@ cd f5-terraform-consul-sd-webinar/terraform/
 
 ### Folder as3
 Folder as3 has three files, main.tf, nginx.json and  variables.tf, main.tf is used to provision nginx.json template to bigip once its ready.
+Please download the AS3 rpm module from https://github.com/F5Networks/f5-appsvcs-extension before doing terraform apply.
 
 ### Folder scripts
 consul.sh is used to install consul 
@@ -28,4 +29,8 @@ nginx.sh is used to install consul agent on nginx servers
 - outputs.tf is used to output and display  F5 BIG-IP management IP and F5 BIG-IP dynamic Password 
 - To login into F5 BIG-IP using GUI F5_IP displayed,  for example use https://F5_IP:8443 and Passsword as value of F5_Password
 
-HashiCorp & F5 webinar based on https://clouddocs.f5.com/cloud/public/v1/aws/AWS_singleNIC.html
+### Images used
+- BIG-IP image used is 14.1 version
+- AS3 rpm used is 3.7.0 version
+- HashiCorp & F5 webinar based on https://clouddocs.f5.com/cloud/public/v1/aws/AWS_singleNIC.html
+-
