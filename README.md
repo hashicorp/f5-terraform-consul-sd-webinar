@@ -17,6 +17,7 @@ cd f5-terraform-consul-sd-webinar/terraform/
 - Now you have Virtual IP and Pool information already configured on BIG-IP in partition defined in the consul.json file.
 
 # How to test
+- You can access backend applications using http://VIP_IP where VIP_IP is the Elastic IP which maps to BIG-IP Private VIP IP.
 - The NGINX servers are already in Auto scale group with consul agents running and sending all information to Consul server.
 - Use case is when you destroy or bring down  one of the NGINX server, BIG-IP AS3 will poll the consul server and update the pool members automatically
 - So as the NGINX servers are going up and down the BIG-IP Pool members are updated automatically without manual intervention.  
