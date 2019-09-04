@@ -39,7 +39,7 @@ nginx.sh is used to install consul agent on nginx servers
 - outputs.tf is used to output and display  F5 BIG-IP management IP and F5 BIG-IP dynamic Password 
 - To login into F5 BIG-IP using GUI F5_IP displayed,  for example use https://F5_IP:8443 and Passsword as value of F5_Password
 
-### Images used
+### Product Versions
 - BIG-IP image used is 14.1 version
 - AS3 rpm used is 3.7.0 version
 - HashiCorp & F5 webinar based on https://clouddocs.f5.com/cloud/public/v1/aws/AWS_singleNIC.html
