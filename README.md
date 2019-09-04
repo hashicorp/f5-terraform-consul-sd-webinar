@@ -1,5 +1,5 @@
 # F5 BIG-IP Terraform & Consul Webinar - Zero Touch App Delivery with F5, Terraform & Consul
-- This repository will provision BIG-IP VE (Pay as you Grow), Consul & ngnx servers in AWS
+- This repository will provision BIG-IP VE (Pay as you Grow), Consul & NGNX servers in AWS
 
 # How to use this repo
 
@@ -10,7 +10,7 @@ cd f5-terraform-consul-sd-webinar/terraform/
 
 ```
 - Run terraform plan. terraform apply
-- This will create BIG-IP, consul, nginx instances on AWS
+- This will create BIG-IP, consul, NGINX instances on AWS
 
 ### Folder as3
 Folder as3 has three files, main.tf, nginx.json and  variables.tf, main.tf is used to provision nginx.json template to bigip once its ready.
