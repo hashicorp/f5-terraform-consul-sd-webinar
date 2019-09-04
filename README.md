@@ -23,7 +23,7 @@ cd f5-terraform-consul-sd-webinar/terraform/
 - So as the NGINX servers are going up and down the BIG-IP Pool members are updated automatically without manual intervention.  
 
 ### Folder as3
-Folder as3 has three files, main.tf, nginx.json and  variables.tf, main.tf is used to provision nginx.json template to bigip once its ready.
+Folder as3 has three files, main.tf, nginx.json and  variables.tf, main.tf is used to provision nginx.json template to BIG-IP once its ready.
 Please download the AS3 rpm module from https://github.com/F5Networks/f5-appsvcs-extension before doing terraform apply.
 
 ### Folder scripts
