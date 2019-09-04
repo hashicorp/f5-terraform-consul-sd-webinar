@@ -12,6 +12,6 @@ resource "null_resource" "key" {
   }
 
   provisioner "local-exec" {
-    command = "chmod 600 key.pem"
+    command = "chmod 600 *.pem"
   }
 }
