@@ -1,7 +1,6 @@
 resource "aws_instance" "consul" {
   ami                         = "${data.aws_ami.ubuntu.id}"
   instance_type               = "m5.large"
-  associate_public_ip_address = true
   private_ip                  = "10.0.0.100"
   subnet_id                   = "${module.vpc.public_subnets[0]}"
   vpc_security_group_ids      = ["${aws_security_group.consul.id}"]
