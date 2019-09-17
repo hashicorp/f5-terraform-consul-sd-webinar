@@ -1,11 +1,11 @@
 # F5 BIG-IP Terraform & Consul Webinar - Zero Touch App Delivery with F5, Terraform & Consul
 - This repository will provision BIG-IP VE (Pay as you Grow), Consul & NGINX servers in AWS
 
-# Architecture
-![Demo Arch](assets/f5_arch.png)
-
 # Demo
 You can check out a recording of this demo [here](https://youtu.be/rVTgTXpiopc?t=1489)
+
+# Architecture
+![Demo Arch](assets/f5_arch.png)
 
 # How to use this repo
 
