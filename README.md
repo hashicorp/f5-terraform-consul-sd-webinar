@@ -4,6 +4,9 @@
 # Architecture
 ![Demo Arch](assets/f5_arch.png)
 
+# Demo
+You can check out a recording of this demo [here](https://youtu.be/rVTgTXpiopc?t=1489)
+
 # How to use this repo
 
 - Clone the repository
