@@ -27,6 +27,7 @@ cd f5-terraform-consul-sd-webinar/terraform/
 - The NGINX servers are already in Auto scale group with consul agents running and sending all information to Consul server.
 - Use case is when you destroy or bring down  one of the NGINX server, BIG-IP AS3 will poll the consul server and update the pool members automatically
 - So as the NGINX servers are going up and down the BIG-IP Pool members are updated automatically without manual intervention.  
+- Use http://consul_public_IP:8500 to access the consul server and check the status of consul nodes count 
 
 ### Folder as3
 Folder as3 has three files, `main.tf`, `nginx.json` and `variables.tf`. `main.tf` is used to provision `nginx.json` template to BIG-IP once its ready.
