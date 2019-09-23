@@ -17,7 +17,7 @@ cd f5-terraform-consul-sd-webinar/terraform/
 ```
 - Run `terraform plan`. `terraform apply`
 - This will create BIG-IP, consul, NGINX instances on AWS
-- Next we need to download and load AS3 rpm into BIG-IP, for AS3 documentation and download please refer to https://github.com/F5Networks/f5-appsvcs-extension
+- Next we need to download and load AS3 rpm into BIG-IP, for AS3 documentation and download please refer to https://github.com/F5Networks/f5-appsvcs-extension  note :- please use AS3 3.7.0 rpm image
 - Once the rpm is installed on BIG-IP change the directory using ```cd f5-terraform-consul-sd-webinar/as3```
 - Do terraform plan & apply, this will deploy the AS3 declarative JSON for service discovery on BIG-IP. It will use as3.tf file. You can either edit the example `terraform.tfvars.example` file in that directory to pass the necessary variables to terraform, or enter them manually via the CLI, copying the format of the values in the file. 
 - Now you have Virtual IP and Pool information already configured on BIG-IP in partition defined in the consul.json file.
