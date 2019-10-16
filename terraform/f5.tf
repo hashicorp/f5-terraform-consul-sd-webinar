@@ -18,7 +18,7 @@ resource "aws_instance" "f5" {
   root_block_device { delete_on_termination = true }
 
   tags = {
-    Name = "f5"
+    Name = "${var.prefix}-f5"
     Env  = "consul"
   }
 
