@@ -19,6 +19,7 @@ The `terraform` directory has tf files for creating instances for consul, f5, ia
 - `outputs.tf` is used to output and display F5 BIG-IP management IP and F5 BIG-IP dynamic Password
 
 
+## Steps 
 - Clone the repository & change working directory to terraform
 ```
 git clone https://github.com/hashicorp/f5-terraform-consul-sd-webinar
