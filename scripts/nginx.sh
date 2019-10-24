@@ -92,11 +92,14 @@ sudo chmod +x /usr/local/bin/docker-compose
 #Run  nginx
 sleep 10
 cat << EOF > docker-compose.yml
-web:
-  image: nginx
-  ports:
-  - "80:80"
-  restart: always
-  command: [nginx-debug, '-g', 'daemon off;']
+version: "3.7"
+services:
+  web:
+    image: nginxdemos/hello
+    ports:
+    - "80:80"
+    restart: always
+    command: [nginx-debug, '-g', 'daemon off;']
+    network_mode: "host"
 EOF
 sudo docker-compose up -d
