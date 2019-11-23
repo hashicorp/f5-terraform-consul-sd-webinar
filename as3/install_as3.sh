@@ -85,5 +85,5 @@ until curl ${CURL_FLAGS} -o /dev/null --write-out "" --fail --silent \
 done
 
 echo "Installed $RPM_NAME on $TARGET"
-
+sleep 30 # wait to complete installing
 exit 0
