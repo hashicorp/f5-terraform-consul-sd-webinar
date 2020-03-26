@@ -22,6 +22,6 @@ resource "null_resource" "install_as3" {
 # deploy application using as3
 resource "bigip_as3" "nginx" {
   as3_json    = "${file("nginx.json")}"
-  config_name = "consul_sd"
+  tenant_name = "consul_sd"
   depends_on  = [null_resource.install_as3]
 }

@@ -55,8 +55,9 @@ done
 #Upload new f5-appsvcs RPM to target
 echo "Uploading RPM to https://$TARGET/mgmt/shared/file-transfer/uploads/$RPM_NAME"
 LEN=$(wc -c $TARGET_RPM | awk 'NR==1{print $1}')
-# RANGE_SIZE=50000000 higher number for smaller chunks
-RANGE_SIZE=5000000
+# Higher number for smaller chunks
+RANGE_SIZE=50000000
+# RANGE_SIZE=5000000
 CHUNKS=$(( $LEN / $RANGE_SIZE))
 for i in $(seq 0 $CHUNKS); do
     START=$(( $i * $RANGE_SIZE))
