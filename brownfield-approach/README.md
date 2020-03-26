@@ -50,6 +50,7 @@ terraform apply
 ## Configure BIG-IP for brownfield demo
 
 This step will configure the BIG-IP instance with a virtual-server and associated pools by means of Terraform to simulate an already existing brownfield environment.
+
 In real life, it does not make a difference, if existing virtual-servers were created through Terraform, manually through the BIG-IP UI or by any other means.
 
 - Check the Consul UI (URL provided as an output of the previous step) for the IP addresses of the available NGINX service endpoints.
@@ -83,15 +84,19 @@ terraform apply
 
 - As an output you will see a URL you can use to access the backend application http://VIP_IP:8080 where VIP_IP is the Elastic IP which maps to BIG-IP Private VIP_IP.
 
+
 ## Scale NGINX AWS Auto Scaling Group
 
 - Scale your NGINX Auto Scaling Group by either adjusting `nginx.tf` within the `terraform` folder or through the AWS Console
 - Notice, that after some minutes additional NGINX service endpoints will appear within the Consul UI
 - Also notice, that the F5 server pool will not automatically adjust to the new number of NGINX service endpoints
 
+
 ## Install AS3 extension and deploy dynamic backend pool with Consul integration
 
-In this step you will download and load AS3 rpm into BIG-IP, for AS3 documentation and download please refer to https://github.com/F5Networks/f5-appsvcs-extension  note : this currently uses AS3 3.17.1 rpm image. Also an additional F5 server pool will be deployed which is linked to Consul and automatically discovers NGINX instances registered with Consul. This pool is a "shared" pool and defined in `brownfield-approach/2-as3-shared-pool/nginx-pool.json`
+In this step you will download and load AS3 rpm into BIG-IP, for AS3 documentation and download please refer to https://github.com/F5Networks/f5-appsvcs-extension  note : this currently uses AS3 3.17.1 rpm image.
+
+Also an additional F5 server pool will be deployed which is linked to Consul and automatically discovers NGINX instances registered with Consul. This pool is a "shared" pool and defined in `brownfield-approach/2-as3-shared-pool/nginx-pool.json`
 
 - Change to subfolder `2-as3-shared-pool`
 
@@ -112,6 +117,7 @@ terraform apply
 - Use F5 UI to adjust the configuration of the virtual-server called `webapp` to use pool `webapp-pool-consul` as its default pool.
 - Scale up and down the NGINX Auto Scaling group again and verify, the pool `webapp-pool-consul` automatically adjusts its members, based on which instances are registered within Consul.
 - Congratulations! You have just migrated an existing F5 deployment to leverage Consul to automatically scale up and down the backend server pools!
+
 
 # How to test?
 - You can access backend applications using http://VIP_IP:8080 where VIP_IP is the Elastic IP which maps to BIG-IP Private VIP_IP.
