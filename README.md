@@ -9,6 +9,9 @@ You can check out a recording of this demo [here](https://youtu.be/rVTgTXpiopc?t
 
 # How to use this repo
 
+- Option 1 - Setting up a complete new Application on your F5 BIG-IP through AS3 leveraging Consul integration: Follow the steps outlined below.
+- Option 2 - Migrating an existing F5 BIG-IP deployment to leverage AS3 Consul integration: Follow the steps outlined in `README.md` within `brownfiled-approach` subfolder.
+
 ## Provision Infrastructure
 
 The `terraform` directory has tf files for creating instances for consul, f5, iam policy, nginx servers with autoscale group.
@@ -73,6 +76,6 @@ This module attempts to download the rpom automatically, but you can also downlo
 
 
 ### Product Versions
-- BIG-IP image used is 14.1 version
-- AS3 rpm used is [3.7.0 version](https://github.com/F5Networks/f5-appsvcs-extension/raw/v3.7.0/dist/latest/f5-appsvcs-3.7.0-7.noarch.rpm)
+- BIG-IP image used is 15.0.1 version
+- AS3 rpm used is [3.17.1 version](https://github.com/F5Networks/f5-appsvcs-extension/releases/download/v3.17.1/f5-appsvcs-3.17.1-1.noarch.rpm)
 - HashiCorp & F5 webinar based on https://clouddocs.f5.com/cloud/public/v1/aws/AWS_singleNIC.html
