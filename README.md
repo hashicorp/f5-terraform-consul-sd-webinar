@@ -10,7 +10,7 @@ You can check out a recording of this demo [here](https://youtu.be/rVTgTXpiopc?t
 # How to use this repo
 
 - Option 1 - Setting up a complete new Application on your F5 BIG-IP through AS3 leveraging Consul integration: Follow the steps outlined below.
-- Option 2 - Migrating an existing F5 BIG-IP deployment to leverage AS3 Consul integration: Follow the steps outlined in `README.md` within `brownfiled-approach` subfolder.
+- Option 2 - Migrating an existing F5 BIG-IP deployment to leverage AS3 Consul integration: Follow the steps outlined in [`README.md`](brownfield-approach/README.md) within `brownfield-approach` subfolder.
 
 ## Provision Infrastructure
 

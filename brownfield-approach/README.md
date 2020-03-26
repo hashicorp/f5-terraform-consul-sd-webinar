@@ -96,7 +96,7 @@ Also an additional F5 server pool will be deployed which is linked to Consul and
 
 - Change to subfolder `2-as3-shared-pool`
 
-````
+```
 cd brownfield-approach/2-as3-shared-pool
 ```
 
