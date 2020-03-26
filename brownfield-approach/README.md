@@ -91,8 +91,7 @@ terraform apply
 
 ## Install AS3 extension and deploy dynamic backend pool with Consul integration
 
-In this step you will download and load AS3 rpm into BIG-IP, for AS3 documentation and download please refer to https://github.com/F5Networks/f5-appsvcs-extension  note : this currently uses AS3 3.17.1 rpm image.
-Also an additional F5 server pool will be deployed which is linked to Consul and automatically discovers NGINX instances registered with Consul. This pool is a "shared" pool and defined in `brownfield-approach/2-as3-shared-pool/nginx-pool.json`
+In this step you will download and load AS3 rpm into BIG-IP, for AS3 documentation and download please refer to https://github.com/F5Networks/f5-appsvcs-extension  note : this currently uses AS3 3.17.1 rpm image. Also an additional F5 server pool will be deployed which is linked to Consul and automatically discovers NGINX instances registered with Consul. This pool is a "shared" pool and defined in `brownfield-approach/2-as3-shared-pool/nginx-pool.json`
 
 - Change to subfolder `2-as3-shared-pool`
 
