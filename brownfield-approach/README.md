@@ -1,11 +1,11 @@
 # F5 BIG-IP Terraform & Consul Webinar - Brownfield demo for existing deployments
 
-This subfolder contains code to demonstrate a "brownfield" to approach to leverage Consul Service Discovery in conjuction with existing F5 BIG-IP deployments.
+This subfolder contains code to demonstrate a "brownfield" approach to leverage Consul Service Discovery in conjuction with existing F5 BIG-IP deployments.
 
 In many environments there may be already existing F5 BIG-IP deployments, which were not necessarily created completely by means of AS3.
 Recreating those existing environments completey with AS3 definitions and migrating everything, like already existing virtual-servers etc., to AS3 might be a big hurdle for operations teams.
 
-To also get the benefits of Consul - F5 BIG-IP integration in existing evironments, this subfolder contains demo code to show the migration steps for an existing F5 BIG-IP installation towards Consul - F5 BIG-IP integration for automating server pools, while keeping existing virtual-server etc. configuration as is.
+To also get the benefits of Consul - F5 BIG-IP integration in those already existing evironments, this subfolder contains demo code to show the migration steps for an existing F5 BIG-IP installation towards Consul - F5 BIG-IP integration for automating server pools, while keeping existing virtual-server etc. configurations as is.
 
 
 # Architecture
@@ -23,7 +23,7 @@ The `terraform` directory in the root folder of this repository has Terraform fi
 - `outputs.tf` is used to output and display F5 BIG-IP management IP and F5 BIG-IP dynamic Password
 
 
-## Steps to simulate a brownfield approach with existing F5 BIG-IP deployments
+# Steps to simulate a brownfield approach with existing F5 BIG-IP deployments
 
 ## Setup core infrastructure
 
@@ -42,8 +42,8 @@ terraform plan
 terraform apply
 ```
 
-  - This will create BIG-IP, consul, NGINX instances on AWS
-  - This will also seed a `terraform.tfvars` file in all necessary `brownflied` subfolders for use in the next step
+  - This will create BIG-IP, Consul, NGINX instances on AWS
+  - This will also seed a `terraform.tfvars` file in all necessary `brownfield` subfolders for use in the next step
   - It may take up to 5 minutes or after the run is complete for the environment to become ready. The URL for the BIG-IP UI is provided as part of the output.  Verify you can reach the UI before proceeding.
 
 
@@ -64,12 +64,12 @@ cd brownfield-approach/1-f5-brownfield-install-terraform
 ```
 resource "bigip_ltm_pool_attachment" "node1-attach" {
   pool = "${bigip_ltm_pool.webapp-pool.name}"
-  node = "/Common/10.0.0.239:80"
+  node = "/Common/10.0.0.XXX:80"
 }
 
 resource "bigip_ltm_pool_attachment" "node2-attach" {
   pool = "${bigip_ltm_pool.webapp-pool.name}"
-   node = "/Common/10.0.0.25:80"
+   node = "/Common/10.0.0.XXX:80"
 }
 ```
 
@@ -91,7 +91,7 @@ terraform apply
 
 ## Install AS3 extension and deploy dynamic backend pool with Consul integration
 
-In this step you will download and load AS3 rpm into BIG-IP, for AS3 documentation and download please refer to https://github.com/F5Networks/f5-appsvcs-extension  note :- this currently uses AS3 3.17.1 rpm image
+In this step you will download and load AS3 rpm into BIG-IP, for AS3 documentation and download please refer to https://github.com/F5Networks/f5-appsvcs-extension  note : this currently uses AS3 3.17.1 rpm image.
 Also an additional F5 server pool will be deployed which is linked to Consul and automatically discovers NGINX instances registered with Consul. This pool is a "shared" pool and defined in `brownfield-approach/2-as3-shared-pool/nginx-pool.json`
 
 - Change to subfolder `2-as3-shared-pool`
@@ -111,7 +111,7 @@ terraform apply
 
 - Use F5 UI to verify, there is an additional backend server pool available now called `webapp-pool-consul` which has all NGINX service endpoints currently registered in Consul as members.
 - Use F5 UI to adjust the configuration of the virtual-server called `webapp` to use pool `webapp-pool-consul` as its default pool.
-- Scale up and down the NGINX Auto Scaling group again and verify, the pool `webapp-pool-consul` automatically adjutsts its members, based what on which instancres are registered within Consul.
+- Scale up and down the NGINX Auto Scaling group again and verify, the pool `webapp-pool-consul` automatically adjusts its members, based on which instances are registered within Consul.
 - Congratulations! You have just migrated an existing F5 deployment to leverage Consul to automatically scale up and down the backend server pools!
 
 # How to test?
