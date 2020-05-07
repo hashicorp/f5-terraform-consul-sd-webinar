@@ -5,8 +5,11 @@ resource "random_string" "password" {
 
 resource "aws_instance" "f5" {
 
-  #F5 BIGIP-14.1.0.3-0.0.6 PAYG-Good 25Mbps-190326002717
-  ami = "ami-00a9fd893d5d15cf6"
+  # F5 BIGIP-15.0.1.1-0.0.3 PAYG-Good 25Mbps-191118135436 for AWS region eu-central-1
+  # ami = "ami-0f175be61eaf4f898"
+  
+  # F5 BIGIP-15.0.1.1-0.0.3 PAYG-Good 25Mbps-191118135436 for AWS region us-east-1
+  ami = "ami-00eeec1a00568822c"
 
   instance_type               = "m5.xlarge"
   private_ip                  = "10.0.0.200"

@@ -5,6 +5,7 @@ module "vpc" {
   name = "${var.prefix}-f5-vpc"
   cidr = "10.0.0.0/16"
 
+  # azs            = ["eu-central-1a"]
   azs            = ["us-east-1a"]
   public_subnets = ["10.0.0.0/24"]
 
