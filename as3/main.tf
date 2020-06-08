@@ -3,6 +3,12 @@ provider "bigip" {
   username = var.username
   password = var.password
 }
+# pin to 1.1.2
+terraform {
+  required_providers {
+    bigip = "~> 1.1.2"
+  }
+}
 
 # deploy application using as3
 resource "bigip_as3" "nginx" {

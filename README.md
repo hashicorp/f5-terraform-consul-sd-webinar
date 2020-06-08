@@ -76,6 +76,6 @@ This module attempts to download the rpom automatically, but you can also downlo
 
 
 ### Product Versions
-- BIG-IP image used is 15.0.1 version
-- AS3 rpm used is [3.17.1 version](https://github.com/F5Networks/f5-appsvcs-extension/releases/download/v3.17.1/f5-appsvcs-3.17.1-1.noarch.rpm)
+- BIG-IP image used is 15.1.02 version
+- AS3 rpm used is [3.19.1 version](https://github.com/F5Networks/f5-appsvcs-extension/releases/download/v3.19.1/f5-appsvcs-3.19.1-1.noarch.rpm)
 - HashiCorp & F5 webinar based on https://clouddocs.f5.com/cloud/public/v1/aws/AWS_singleNIC.html
