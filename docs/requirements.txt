@@ -1,0 +1,7 @@
+Sphinx
+git+git://github.com/f5devcentral/f5-sphinx-theme@v2.0.1#egg=f5_sphinx_theme
+recommonmark
+sphinxcontrib-googleanalytics
+sphinxcontrib-addmetahtml
+sphinxcontrib-nwdiag
+sphinxcontrib-blockdiag

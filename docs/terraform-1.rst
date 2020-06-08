@@ -12,9 +12,11 @@ On the ubuntu host run the following command.
   $ terraform plan
   $ terraform apply              
 
-.. warning:: If you see an error "OptInRequired" you will need to go to the next section to resolve this error.
+.. warning:: If you see an error "OptInRequired" you will need to go to the
+   next section to resolve this error.
 
-The first step "init" is fetching providers or plug-ins that will be used to connect to AWS.
+The first step "init" is fetching providers or plug-ins that will be used to
+connect to AWS.
 
 "plan" will output actions that terraform will perform (dry-run).
 
