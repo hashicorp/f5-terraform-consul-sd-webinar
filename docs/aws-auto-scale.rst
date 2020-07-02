@@ -3,7 +3,7 @@ AWS Auto Scale
 
 In the AWS Console find the "EC2" service.
 
-In the left menu find "Auto Scaling Group"
+In the left menu find "Auto Scaling Groups"
 
 .. image:: ./images/aws-auto-scaling-menu.png
 
@@ -12,6 +12,8 @@ Under the "Actions" menu select "Edit"
 .. image:: ./images/aws-auto-scaling-edit.png
 
 .. warning:: It may take a few minutes for the new instances to be created
+
+Modify the "Desired Capacity" from 2 to 3.  This will trigger AWS to add an additional NGINX web server.
 
 On the BIG-IP you should see the new pool members get added.
 
