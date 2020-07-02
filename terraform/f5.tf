@@ -22,20 +22,40 @@ resource "aws_instance" "f5" {
   subnet_id                   = "${module.vpc.public_subnets[0]}"
   vpc_security_group_ids      = ["${aws_security_group.f5.id}"]
   user_data                   = "${data.template_file.f5_init.rendered}"
+  iam_instance_profile        = "${aws_iam_instance_profile.bigip.name}"
   key_name                    = "${aws_key_pair.demo.key_name}"
   root_block_device { delete_on_termination = true }
 
   tags = {
-    Name = "${var.prefix}-f5"
+    Name = "${var.prefix}-f5-bigip"
     Env  = "consul"
   }
 
+}
+
+
+resource "aws_s3_bucket" "s3_bucket" {
+  bucket_prefix = "${var.prefix}-s3bucket"
+}
+# encrypt password sha512
+resource "null_resource" "admin-shadow" {
+  provisioner "local-exec" {
+    command = "./admin-shadow.sh ${random_string.password.result}"
+  }
+}
+
+resource "aws_s3_bucket_object" "password" {
+  bucket = "${aws_s3_bucket.s3_bucket.id}"
+  key = "admin.shadow"
+  source = "admin.shadow"
+  depends_on = ["null_resource.admin-shadow"]
 }
 
 data "template_file" "f5_init" {
   template = "${file("../scripts/f5.tpl")}"
 
   vars = {
-    password = "${random_string.password.result}"
+#    password = "${random_string.password.result}"
+    s3_bucket = "${aws_s3_bucket.s3_bucket.id}"
   }
 }
