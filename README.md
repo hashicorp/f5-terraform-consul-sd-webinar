@@ -30,6 +30,7 @@ cd f5-terraform-consul-sd-webinar/terraform/
 ```
 - Create Terraform run
 - Modify `terraform.tfvars.example` and add a prefix to identify your resources
+- Modify `terraform.tfvars.example` specify the source IP address you will be connecting from i.e. 192.0.2.10/32 
 - Rename `terraform.tfvars.example` to `terraform.tfvars`
 
 ```
@@ -76,6 +77,6 @@ This module attempts to download the rpom automatically, but you can also downlo
 
 
 ### Product Versions
-- BIG-IP image used is 15.1.02 version
+- BIG-IP image used is 15.1.04 version
 - AS3 rpm used is [3.19.1 version](https://github.com/F5Networks/f5-appsvcs-extension/releases/download/v3.19.1/f5-appsvcs-3.19.1-1.noarch.rpm)
 - HashiCorp & F5 webinar based on https://clouddocs.f5.com/cloud/public/v1/aws/AWS_singleNIC.html
