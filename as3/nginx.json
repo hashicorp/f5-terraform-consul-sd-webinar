@@ -4,7 +4,7 @@
   "persist": true,
   "declaration": {
     "class": "ADC",
-    "schemaVersion": "3.7.0",
+    "schemaVersion": "3.24.0",
     "id": "Consul_SD",
     "Consul_SD": {
       "class": "Tenant",
@@ -33,7 +33,8 @@
               "servicePort": 80,
               "addressDiscovery": "consul",
               "updateInterval": 10,
-              "uri": "http://10.0.0.100:8500/v1/catalog/service/nginx"
+              "uri": "http://10.0.0.100:8500/v1/health/service/nginx?passing",
+	      "jmesPathQuery": "[*].{id:Node.Address,ip:{private:Node.Address,public:Node.Address},port:Service.Port}"
             }
           ]
         }

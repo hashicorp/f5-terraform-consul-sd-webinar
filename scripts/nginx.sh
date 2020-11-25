@@ -7,7 +7,7 @@ local_ipv4="$(curl -s http://169.254.169.254/latest/meta-data/local-ipv4)"
 sudo apt-get install unzip
 
 #Download Consul
-CONSUL_VERSION="1.7.2"
+CONSUL_VERSION="1.9.0"
 curl --silent --remote-name https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_linux_amd64.zip
 
 #Install Consul

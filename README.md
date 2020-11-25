@@ -1,8 +1,13 @@
 # F5 BIG-IP Terraform & Consul Webinar - Zero Touch App Delivery with F5, Terraform & Consul
 - This repository will provision BIG-IP VE (Pay as you Grow), Consul & NGINX servers in AWS
 
-# Demo
-You can check out a recording of this demo [here](https://youtu.be/rVTgTXpiopc?t=1489)
+# Overview Video
+- [Nov 2020](https://youtu.be/b7RFww6SfxM)
+
+# Demo Video
+You can check out a recording of this demo 
+- [Aug 2020](https://youtu.be/cBJ9NyPhE9o?t=1151) 
+- [Oct 2019](https://youtu.be/rVTgTXpiopc?t=1489)
 
 # Architecture
 ![Demo Arch](assets/f5_arch.png)
@@ -21,6 +26,14 @@ The `terraform` directory has tf files for creating instances for consul, f5, ia
 - `vpc.tf` is used to create a new vpc and also to define the aws security groups.
 - `outputs.tf` is used to output and display F5 BIG-IP management IP and F5 BIG-IP dynamic Password
 
+## Requirements
+
+This demo has been developed on Ubuntu 18.04 and Mac OS.  
+
+- terraform 0.13
+- aws cli (including credentials to an AWS account)
+- openssl
+- Python passlib (for Mac OS users)
 
 ## Steps 
 - Clone the repository & change working directory to terraform
@@ -28,6 +41,15 @@ The `terraform` directory has tf files for creating instances for consul, f5, ia
 git clone https://github.com/hashicorp/f5-terraform-consul-sd-webinar
 cd f5-terraform-consul-sd-webinar/terraform/
 ```
+
+**For Mac Users**
+
+```
+$ python3 -m venv venv
+$ source venv/bin/activate
+$ pip install -r requirements.txt
+```
+
 - Create Terraform run
 - Modify `terraform.tfvars.example` and add a prefix to identify your resources
 - Modify `terraform.tfvars.example` specify the source IP address you will be connecting from i.e. 192.0.2.10/32 
@@ -39,7 +61,7 @@ terraform plan
 terraform apply
 ```
 
-  - This will create BIG-IP, consul, NGINX instances on AWS
+  - This will create BIG-IP, consul, NGINX web server instances on AWS
   - This will also seed a `terraform.tfvars` file in the `as3` directory for use in the next step
   - This step
   - It may take up to 5 minutes or after the run is complete for the environment to become ready. The URL for the BIG-IP UI is provided as part of the output.  Verify you can reach the UI before proceeding.
@@ -48,7 +70,7 @@ terraform apply
 ## Configure BIG-IP
 
 
-Next we need to download and load AS3 rpm into BIG-IP, for AS3 documentation and download please refer to https://github.com/F5Networks/f5-appsvcs-extension  note :- this currently uses AS3 3.7.0 rpm image
+Next we need to deploy the AS3 declaration using the bigip terraform provider.
 
 ```
 terraform init
@@ -63,7 +85,7 @@ terraform apply
 - You can access backend applications using http://VIP_IP:8080 where VIP_IP is the Elastic IP which maps to BIG-IP Private VIP_IP.
 - The NGINX servers are already in Auto scale group with consul agents running and sending all information to Consul server.
 - Use case is when you destroy or bring down  one of the NGINX server, BIG-IP AS3 will poll the consul server and update the pool members automatically
-- So as the NGINX servers are going up and down the BIG-IP Pool members are updated automatically without manual intervention.  
+- So as the NGINX web servers are going up and down the BIG-IP Pool members are updated automatically without manual intervention.  
 - Use http://consul_public_IP:8500 to access the consul server and check the status of consul nodes count
 
 ### Folder as3
@@ -77,6 +99,8 @@ This module attempts to download the rpom automatically, but you can also downlo
 
 
 ### Product Versions
-- BIG-IP image used is 15.1.04 version
-- AS3 rpm used is [3.19.1 version](https://github.com/F5Networks/f5-appsvcs-extension/releases/download/v3.19.1/f5-appsvcs-3.19.1-1.noarch.rpm)
+- Terraform 0.13
+- Consul 1.9.0
+- BIG-IP image used is 15.1.2 version
+- AS3 rpm used is [3.24.1 version](https://github.com/F5Networks/f5-appsvcs-extension/releases/download/v3.24.0/f5-appsvcs-3.24.0-5.noarch.rpm)
 - HashiCorp & F5 webinar based on https://clouddocs.f5.com/cloud/public/v1/aws/AWS_singleNIC.html
