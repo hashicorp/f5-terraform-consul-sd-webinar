@@ -51,44 +51,51 @@ This partition was created by the "nginx.json" that contains the following.
 
 .. code-block:: JavaScript
    
-   {
-     "class": "ADC",
-     "schemaVersion": "3.7.0",
-     "id": "Consul_SD",
-     "Consul_SD": {
-       "class": "Tenant",
-       "Nginx": {
-	 "class": "Application",
-	 "template": "http",
-	 "serviceMain": {
-	   "class": "Service_HTTP",
-	   "virtualPort": 8080,
-	   "virtualAddresses": [
-	     "10.0.0.200"
-	   ],
-	   "pool": "web_pool",
-	   "persistenceMethods": [],
-	   "profileMultiplex": {
-	     "bigip": "/Common/oneconnect"
-	    }
-	 },
-	 "web_pool": {
-	   "class": "Pool",
-	   "monitors": [
-	     "http"
-	   ],
-	   "members": [
-	     {
-	       "servicePort": 80,
-	       "addressDiscovery": "consul",
-	       "updateInterval": 10,
-	       "uri": "http://10.0.0.100:8500/v1/catalog/service/nginx"
-	     }
-	   ]
-	 }
-       }
-     }
-   }
+	{
+	"class": "AS3",
+	"action": "deploy",
+	"persist": true,
+	"declaration": {
+		"class": "ADC",
+		"schemaVersion": "3.24.0",
+		"id": "Consul_SD",
+		"Consul_SD": {
+		"class": "Tenant",
+		"Nginx": {
+			"class": "Application",
+			"template": "http",
+			"serviceMain": {
+			"class": "Service_HTTP",
+			"virtualPort": 8080,
+			"virtualAddresses": [
+				"10.0.0.200"
+			],
+			"pool": "web_pool",
+			"persistenceMethods": [],
+			"profileMultiplex": {
+				"bigip": "/Common/oneconnect"
+			}
+			},
+			"web_pool": {
+			"class": "Pool",
+			"monitors": [
+				"http"
+			],
+			"members": [
+				{
+				"servicePort": 80,
+				"addressDiscovery": "consul",
+				"updateInterval": 10,
+				"uri": "http://10.0.0.100:8500/v1/health/service/nginx?passing",
+			"jmesPathQuery": "[*].{id:Node.Address,ip:{private:Node.Address,public:Node.Address},port:Service.Port}"
+				}
+			]
+			}
+		}
+		}
+	}
+	}
+
 
 Once the partition is selected you should observe there is a pool named "web_pool" and there is a single pool member.  In the next step we will increase the number of NGINX nodes and you will see the change reflected on the BIG-IP.   
 
