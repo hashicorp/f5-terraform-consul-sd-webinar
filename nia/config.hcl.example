@@ -1,0 +1,26 @@
+driver "terraform" {
+  log = true
+  required_providers {
+    bigip = {
+      source = "F5Networks/bigip"
+    }
+  }
+}
+#log_level = "trace"
+consul {
+  address = "${consul}:8500"
+}
+
+provider "bigip" {
+  address  = "${addr}:${port}"
+  username = "admin"
+  password = "${pwd}"
+}
+
+task {
+  name = "AS3"
+  description = "BIG-IP example"
+  source = "../../bigip-example"
+  providers = ["bigip"]
+  services = ["nginx"]
+}

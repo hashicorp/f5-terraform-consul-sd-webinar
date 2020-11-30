@@ -28,6 +28,20 @@ data "template_file" "tfvars" {
     pwd      = "${random_string.password.result}"
   }
 }
+data "template_file" "nia" {
+   template = "${file("../nia/config.hcl.example")}"
+   vars = {
+    addr     = "${aws_eip.f5.public_ip}",
+    port     = "8443",
+    username = "admin"
+    pwd      = "${random_string.password.result}"
+    consul   = "${aws_instance.consul.public_ip}"
+   }
+}
+resource "local_file" "nia-config" {
+  content = "${data.template_file.nia.rendered}"
+  filename = "../nia/config.hcl"
+}
 
 resource "local_file" "tfvars-as3" {
   content  = "${data.template_file.tfvars.rendered}"
