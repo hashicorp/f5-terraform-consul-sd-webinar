@@ -110,7 +110,7 @@ This could be suitable in an environment where you want NIA to update an existin
 ```
 You would then be able to reference this with the taskid of `test_pool`.
 
-To remove event-driven service discovery from `test_pool` you would then issue a `DELETE` to `/mgmt/shread/service-discovery/task/test_pool`.
+To remove event-driven service discovery from `test_pool` you would then issue a `DELETE` to `/mgmt/shared/service-discovery/task/test_pool`.
 
 ## More information
 
