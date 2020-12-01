@@ -1,6 +1,6 @@
 # Network Infrastructure Automation (NIA)
 
-In this directory you will see a simple example of using NIA to "push" a configuration to the BIG-IP.
+In this directory you will see an example of using [Network Infrastructure Automation (NIA)](https://www.consul.io/docs/nia) to "push" a configuration to the BIG-IP.
 
 In the "as3" directory you saw an example of the BIG-IP "pulling" the configuration from Consul.  This requires that the BIG-IP is able to access the Consul service and it is responsible for updating the configuration.
 
@@ -68,7 +68,7 @@ In the first step you are sending an AS3 declaration that specifies that [Event-
         }
 ...
 ```
-When this is enabled, it creates a new API endpoint on the BIG-IP of `/managed/shared/service-discovery/task/~Consul_SD~Nginx~nginx_pool`
+When this is enabled, it creates a new API endpoint on the BIG-IP of `/mgmt/shared/service-discovery/task/~Consul_SD~Nginx~nginx_pool`
 
 In the Terraform code that is used with NIA you will see that this endpoint is used to update the pool members based on the data that is stored in Consul.
 
@@ -88,6 +88,29 @@ resource "bigip_event_service_discovery" "event_pools" {
 }
 ...
 ```
+You could also create your own custom event driven endpoints without using AS3 by sending a POST request to `/mgmt/shared/service-discovery/task` with the following payload (assumes pool "test_pool" already exists).  Note that this will wipe out any existing pool members once you send an update.
+
+This could be suitable in an environment where you want NIA to update an existing pool resource.
+```
+{
+    "id": "test_pool",
+    "schemaVersion": "1.0.0",
+    "provider": "event",
+    "resources": [
+        {
+            "type": "pool",
+            "path": "/Common/test_pool",
+            "options": {
+                "servicePort": 8080
+            }
+        }
+    ],
+    "nodePrefix": "/Common/"
+}
+```
+You would then be able to reference this with the taskid of `test_pool`.
+
+To remove event-driven service discovery from `test_pool` you would then issue a `DELETE` to `/mgmt/shread/service-discovery/task/test_pool`.
 
 ## More information
 
