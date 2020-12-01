@@ -1,0 +1,41 @@
+{
+  "class": "AS3",
+  "action": "deploy",
+  "persist": true,
+  "declaration": {
+    "class": "ADC",
+    "schemaVersion": "3.24.0",
+    "id": "Consul_SD",
+    "Consul_SD": {
+      "class": "Tenant",
+      "Nginx": {
+        "class": "Application",
+        "template": "http",
+        "serviceMain": {
+          "class": "Service_HTTP",
+          "virtualPort": 8080,
+          "virtualAddresses": [
+            "10.0.0.200"
+          ],
+          "pool": "nginx_pool",
+          "persistenceMethods": [],
+          "profileMultiplex": {
+            "bigip": "/Common/oneconnect"
+          }
+        },
+        "nginx_pool": {
+          "class": "Pool",
+          "monitors": [
+            "http"
+          ],
+          "members": [
+            {
+              "servicePort": 80,
+              "addressDiscovery": "event"
+            }
+          ]
+        }
+      }
+    }
+  }
+}
