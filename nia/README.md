@@ -48,6 +48,47 @@ module.AS3.bigip_event_service_discovery.event_pools["nginx"]: Refreshing state.
 Apply complete! Resources: 0 added, 0 changed, 0 destroyed.
 ```
 
+## How this works
+
+In the first step you are sending an AS3 declaration that specifies that [Event-Driven Service Discovery](https://clouddocs.f5.com/products/extensions/f5-appsvcs-extension/latest/declarations/discovery.html#event-driven-service-discovery) should be used.
+
+```
+...
+        "nginx_pool": {
+          "class": "Pool",
+          "monitors": [
+            "http"
+          ],
+          "members": [
+            {
+              "servicePort": 80,
+              "addressDiscovery": "event"
+            }
+          ]
+        }
+...
+```
+When this is enabled, it creates a new API endpoint on the BIG-IP of `/managed/shared/service-discovery/task/~Consul_SD~Nginx~nginx_pool`
+
+In the Terraform code that is used with NIA you will see that this endpoint is used to update the pool members based on the data that is stored in Consul.
+
+```hcl
+...
+resource "bigip_event_service_discovery" "event_pools" {
+  for_each = local.service_ids
+  taskid = "~Consul_SD~Nginx~${each.key}_pool"
+  dynamic "node" {
+    for_each = local.grouped[each.key]
+    content {
+      id = node.value.node_address
+      ip = node.value.node_address
+      port = node.value.port
+    }
+  }
+}
+...
+```
+
 ## More information
 
 This example differs than the one that you will find on the Terraform registry.  Please see the following for another example: https://registry.terraform.io/modules/f5devcentral/app-consul-sync-nia/bigip/latest
