@@ -57,5 +57,6 @@ data "template_file" "f5_init" {
   vars = {
 #    password = "${random_string.password.result}"
     s3_bucket = "${aws_s3_bucket.s3_bucket.id}"
+    region    = var.region
   }
 }

@@ -31,13 +31,13 @@ sleep 60
 source /usr/lib/bigstart/bigip-ready-functions
 wait_bigip_ready
 
-PYTHONPATH=/opt/aws/awscli-1.10.26/lib/python2.7/site-packages/ /opt/aws/awscli-1.10.26/bin/aws s3 cp s3://${s3_bucket}/admin.shadow /config/admin.shadow
+PYTHONPATH=/opt/aws/awscli-1.10.26/lib/python2.7/site-packages/ /opt/aws/awscli-1.10.26/bin/aws s3 cp s3://${s3_bucket}/admin.shadow /config/admin.shadow --region ${region}
 tmsh modify /auth user admin encrypted-password $(cat /config/admin.shadow)
 tmsh modify auth user admin shell bash
 
 tmsh save sys config
 rm -f /config/admin.shadow
-PYTHONPATH=/opt/aws/awscli-1.10.26/lib/python2.7/site-packages/ /opt/aws/awscli-1.10.26/bin/aws s3 rm s3://${s3_bucket}/admin.shadow
+PYTHONPATH=/opt/aws/awscli-1.10.26/lib/python2.7/site-packages/ /opt/aws/awscli-1.10.26/bin/aws s3 rm s3://${s3_bucket}/admin.shadow --region ${region}
 
 EOF
 
