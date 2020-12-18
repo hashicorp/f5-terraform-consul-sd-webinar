@@ -20,7 +20,7 @@ data "aws_ami" "ubuntu" {
 
 # Generate a tfvars file for AS3 installation
 data "template_file" "tfvars" {
-  template = "${file("../as3/terraform.tfvars.example")}"
+  template = file("../as3/terraform.tfvars.example")
   vars = {
     addr     = module.bigip.0.mgmtPublicIP[0]
     port     = "8443"
@@ -29,32 +29,32 @@ data "template_file" "tfvars" {
   }
 }
 data "template_file" "nia" {
-  template = "${file("../nia/config.hcl.example")}"
+  template = file("../nia/config.hcl.example")
   vars = {
     addr     = module.bigip.0.mgmtPublicIP[0]
     port     = "8443"
     username = module.bigip.0.f5_username
     pwd      = module.bigip.0.bigip_password
-    consul   = "${aws_instance.consul.public_ip}"
+    consul   = aws_instance.consul.public_ip
   }
 }
 resource "local_file" "nia-config" {
-  content  = "${data.template_file.nia.rendered}"
+  content  = data.template_file.nia.rendered
   filename = "../nia/config.hcl"
 }
 
 resource "local_file" "tfvars-as3" {
-  content  = "${data.template_file.tfvars.rendered}"
+  content  = data.template_file.tfvars.rendered
   filename = "../as3/terraform.tfvars"
 }
 
 # Generate a tfvars file for "brownfield-approach" installation
 resource "local_file" "tfvars-b1" {
-  content  = "${data.template_file.tfvars.rendered}"
+  content  = data.template_file.tfvars.rendered
   filename = "../brownfield-approach/1-f5-brownfield-install-terraform/terraform.tfvars"
 }
 
 resource "local_file" "tfvars-b2" {
-  content  = "${data.template_file.tfvars.rendered}"
+  content  = data.template_file.tfvars.rendered
   filename = "../brownfield-approach/2-as3-shared-pool/terraform.tfvars"
 }
