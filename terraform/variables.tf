@@ -7,6 +7,11 @@ variable "region" {
   default     = "us-east-1"
 }
 
+variable "f5_username" {
+  description = "F5 username"
+  default     = "bigipuser"
+}
+
 variable "f5_ami_search_name" {
   description = "BIG-IP AMI name to search for"
   type        = string
