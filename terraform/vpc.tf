@@ -15,10 +15,6 @@ module "vpc" {
   }
 }
 
-resource "aws_eip" "f5" {
-  instance = "${aws_instance.f5.id}"
-  vpc      = true
-}
 
 resource "aws_security_group" "f5" {
   name   = "${var.prefix}-f5"

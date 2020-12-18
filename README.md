@@ -36,6 +36,12 @@ This demo has been developed on Ubuntu 18.04 and Mac OS.
 - Python passlib (for Mac OS users)
 
 ## Steps 
+
+- Clone the AWS BIG-IP Module needed for the BIG-IP deployment
+```
+git clone https://github.com/f5devcentral/terraform-aws-bigip-module.git
+```
+
 - Clone the repository & change working directory to terraform
 ```
 git clone https://github.com/hashicorp/f5-terraform-consul-sd-webinar

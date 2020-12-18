@@ -16,7 +16,7 @@ resource "null_resource" "key" {
   }
 
   provisioner "local-exec" {
-    when    = "destroy"
+    when    = destroy
     command = "rm -f *.pem"
   }
 

@@ -22,24 +22,24 @@ data "aws_ami" "ubuntu" {
 data "template_file" "tfvars" {
   template = "${file("../as3/terraform.tfvars.example")}"
   vars = {
-    addr     = "${aws_eip.f5.public_ip}",
-    port     = "8443",
-    username = "admin"
-    pwd      = "${random_string.password.result}"
+    addr     = module.bigip.0.mgmtPublicIP[0]
+    port     = "8443"
+    username = module.bigip.0.f5_username
+    pwd      = module.bigip.0.bigip_password
   }
 }
 data "template_file" "nia" {
-   template = "${file("../nia/config.hcl.example")}"
-   vars = {
-    addr     = "${aws_eip.f5.public_ip}",
-    port     = "8443",
-    username = "admin"
-    pwd      = "${random_string.password.result}"
+  template = "${file("../nia/config.hcl.example")}"
+  vars = {
+    addr     = module.bigip.0.mgmtPublicIP[0]
+    port     = "8443"
+    username = module.bigip.0.f5_username
+    pwd      = module.bigip.0.bigip_password
     consul   = "${aws_instance.consul.public_ip}"
-   }
+  }
 }
 resource "local_file" "nia-config" {
-  content = "${data.template_file.nia.rendered}"
+  content  = "${data.template_file.nia.rendered}"
   filename = "../nia/config.hcl"
 }
 

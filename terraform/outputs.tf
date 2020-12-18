@@ -1,17 +1,21 @@
 output "F5_IP" {
-  value = "${aws_eip.f5.public_ip}"
+  value = module.bigip.0.mgmtPublicIP[0]
 }
 
 output "F5_Password" {
-  value = "${random_string.password.result}"
+  value = module.bigip.0.bigip_password
 }
 
 output "F5_Username" {
-  value = "admin"
+  value = module.bigip.0.f5_username
+}
+
+output "F5_ssh" {
+  value = "ssh -i ${aws_key_pair.demo.key_name}.pem admin@${module.bigip.0.mgmtPublicIP[0]}"
 }
 
 output "F5_UI" {
-  value = "https://${aws_eip.f5.public_ip}:8443"
+  value = "https://${module.bigip.0.mgmtPublicIP[0]}:8443"
 }
 
 output "Consul_UI" {
