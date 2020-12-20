@@ -3,11 +3,11 @@ output "F5_IP" {
 }
 
 output "F5_Password" {
-  value = module.bigip.0.bigip_password
+  value = random_string.password.result
 }
 
 output "F5_Username" {
-  value = module.bigip.0.f5_username
+  value = "admin"
 }
 
 output "F5_ssh" {
