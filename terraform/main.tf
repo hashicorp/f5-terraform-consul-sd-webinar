@@ -24,8 +24,8 @@ data "template_file" "tfvars" {
   vars = {
     addr     = module.bigip.0.mgmtPublicIP[0]
     port     = "8443"
-    username = module.bigip.0.f5_username
-    pwd      = module.bigip.0.bigip_password
+    username = "admin"
+    pwd      = random_string.password.result
   }
 }
 data "template_file" "nia" {
@@ -33,8 +33,8 @@ data "template_file" "nia" {
   vars = {
     addr     = module.bigip.0.mgmtPublicIP[0]
     port     = "8443"
-    username = module.bigip.0.f5_username
-    pwd      = module.bigip.0.bigip_password
+    username = "admin"
+    pwd      = random_string.password.result
     consul   = aws_instance.consul.public_ip
   }
 }
