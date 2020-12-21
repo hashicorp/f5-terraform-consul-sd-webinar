@@ -11,7 +11,7 @@ consul {
   address = "${consul}:8500"
 }
 
-provider "bigip" {
+terraform_provider "bigip" {
   address  = "${addr}:${port}"
   username = "admin"
   password = "${pwd}"
