@@ -9,7 +9,7 @@ variable "region" {
 
 variable "f5_username" {
   description = "F5 username"
-  default     = "bigipuser"
+  default     = "admin"
 }
 
 variable "f5_ami_search_name" {
