@@ -1,6 +1,16 @@
 #!/bin/bash
+# Send output to log file and serial console
+mkdir -p  /var/log/cloud /config/cloud /var/config/rest/downloads
+LOG_FILE=/var/log/cloud/startup-script.log
+[[ ! -f $LOG_FILE ]] && touch $LOG_FILE || { echo "Run Only Once. Exiting"; exit; }
+npipe=/tmp/$$.tmp
+trap "rm -f $npipe" EXIT
+mknod $npipe p
+tee <$npipe -a $LOG_FILE /dev/ttyS0 &
+exec 1>&-
+exec 1>$npipe
+exec 2>&1
 
-mkdir -p /config/cloud
 cat << 'EOF' > /config/cloud/runtime-init-conf.yaml
 ---
 runtime_parameters: []
@@ -27,17 +37,15 @@ post_onboard_enabled:
 EOF
 cat << 'EOF' > /config/custom-config.sh
 #!/bin/bash
-sleep 60
+
 source /usr/lib/bigstart/bigip-ready-functions
 wait_bigip_ready
 
-PYTHONPATH=/opt/aws/awscli-1.10.26/lib/python2.7/site-packages/ /opt/aws/awscli-1.10.26/bin/aws s3 cp s3://${s3_bucket}/admin.shadow /config/admin.shadow --region ${region}
-tmsh modify /auth user admin encrypted-password $(cat /config/admin.shadow)
+tmsh modify /auth user admin encrypted-password '${encrypted_password}'
 tmsh modify auth user admin shell bash
 
 tmsh save sys config
-rm -f /config/admin.shadow
-PYTHONPATH=/opt/aws/awscli-1.10.26/lib/python2.7/site-packages/ /opt/aws/awscli-1.10.26/bin/aws s3 rm s3://${s3_bucket}/admin.shadow --region ${region}
+rm -f /config/custom-config.sh
 
 EOF
 

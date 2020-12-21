@@ -3,7 +3,7 @@ resource "tls_private_key" "demo" {
 }
 
 resource "aws_key_pair" "demo" {
-  public_key = "${tls_private_key.demo.public_key_openssh}"
+  public_key = tls_private_key.demo.public_key_openssh
 }
 
 resource "null_resource" "key" {
@@ -16,7 +16,7 @@ resource "null_resource" "key" {
   }
 
   provisioner "local-exec" {
-    when    = "destroy"
+    when    = destroy
     command = "rm -f *.pem"
   }
 

@@ -34,7 +34,7 @@ On the Ubuntu host run the following commands
   $ terraform apply
   
 In this scenario we are executing a shell script that will
-deploy the "nginx.json" declaration that is configure to use Consul's API for
+deploy the "nginx.json" declaration that is configured to use Consul's API for
 service discovery.
 
 You should see the following output.

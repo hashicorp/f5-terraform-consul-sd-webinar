@@ -15,34 +15,30 @@ module "vpc" {
   }
 }
 
-resource "aws_eip" "f5" {
-  instance = "${aws_instance.f5.id}"
-  vpc      = true
-}
 
 resource "aws_security_group" "f5" {
   name   = "${var.prefix}-f5"
-  vpc_id = "${module.vpc.vpc_id}"
+  vpc_id = module.vpc.vpc_id
 
   ingress {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["${var.allow_from}"]
+    cidr_blocks = [var.allow_from]
   }
 
   ingress {
     from_port   = 8443
     to_port     = 8443
     protocol    = "tcp"
-    cidr_blocks = ["${var.allow_from}"]
+    cidr_blocks = [var.allow_from]
   }
 
   ingress {
     from_port   = 8080
     to_port     = 8080
     protocol    = "tcp"
-    cidr_blocks = ["${var.allow_from}"]
+    cidr_blocks = [var.allow_from]
   }
 
   egress {
@@ -56,7 +52,7 @@ resource "aws_security_group" "f5" {
 
 resource "aws_security_group" "nginx" {
   name   = "${var.prefix}-nginx"
-  vpc_id = "${module.vpc.vpc_id}"
+  vpc_id = module.vpc.vpc_id
 
   ingress {
     from_port   = 22
@@ -96,20 +92,20 @@ resource "aws_security_group" "nginx" {
 
 resource "aws_security_group" "consul" {
   name   = "${var.prefix}-consul"
-  vpc_id = "${module.vpc.vpc_id}"
+  vpc_id = module.vpc.vpc_id
 
   ingress {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["${var.allow_from}"]
+    cidr_blocks = [var.allow_from]
   }
 
   ingress {
     from_port   = 8500
     to_port     = 8500
     protocol    = "tcp"
-    cidr_blocks = ["10.0.0.0/16","${var.allow_from}"]
+    cidr_blocks = ["10.0.0.0/16",var.allow_from]
   }
 
   ingress {
