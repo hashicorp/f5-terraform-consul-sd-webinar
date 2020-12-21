@@ -16,8 +16,8 @@ Discovery to create a pool of the NGINX nodes.
 You will then modify the Auto-Scale group of NGINX nodes to observe how
 Consul get detect the new NGINX nodes and the BIG-IP will also be updated.
 
-Steps You will Peform
-=====================
+Steps You will Perform
+======================
 
 #. Connect to AWS Console
 #. Use Terraform to deploy AWS infrastructure, Consul, NGINX, and BIG-IP instances
@@ -58,4 +58,5 @@ Application Services Extension 3 (AS3) provides a declarative interface to the B
    aws-marketplace          
    terraform-2
    aws-auto-scale
+   nia
    clean-up

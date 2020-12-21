@@ -9,7 +9,7 @@ AWS Console
 
 During this class we will be using the Blue Print / Class Labeled.
 
-"Agility 2020 - Dude Where's My Services: Introduction to Service Discovery with Consul"
+"Introduction to Service Discovery with Consul"
 
 From the UDF console find the RDP link for the Windows 2012 device.
 
