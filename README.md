@@ -120,4 +120,4 @@ Folder as3 has three files, `main.tf`, `nginx.json` and `variables.tf`. `main.tf
 - Terraform 0.13
 - Consul 1.9.0
 - BIG-IP image used is 15.1.2 version
-- AS3 rpm used is [3.24.1 version](https://github.com/F5Networks/f5-appsvcs-extension/releases/download/v3.24.0/f5-appsvcs-3.24.0-5.noarch.rpm)
+- AS3 rpm used is [3.25.0 version](https://github.com/F5Networks/f5-appsvcs-extension/releases/download/v3.25.0/f5-appsvcs-3.25.0-3.noarch.rpm)

@@ -24,8 +24,8 @@ pre_onboard_enabled:
 extension_packages:
   install_operations:
     - extensionType: as3
-      extensionVersion: 3.24.0
-      extensionUrl: file:///var/config/rest/downloads/f5-appsvcs-3.24.0-5.noarch.rpm
+      extensionVersion: 3.25.0
+      extensionUrl: file:///var/config/rest/downloads/f5-appsvcs-3.25.0-3.noarch.rpm
 extension_services:
     service_operations: []
 post_onboard_enabled:
@@ -53,7 +53,7 @@ source /usr/lib/bigstart/bigip-ready-functions
 wait_bigip_ready
 
 for i in {1..30}; do
-    curl -fv --retry 1 --connect-timeout 5 -L "https://github.com/F5Networks/f5-appsvcs-extension/releases/download/v3.24.0/f5-appsvcs-3.24.0-5.noarch.rpm" -o "/var/config/rest/downloads/f5-appsvcs-3.24.0-5.noarch.rpm" && break || sleep 10
+    curl -fv --retry 1 --connect-timeout 5 -L "https://github.com/F5Networks/f5-appsvcs-extension/releases/download/v3.25.0/f5-appsvcs-3.25.0-3.noarch.rpm" -o "/var/config/rest/downloads/f5-appsvcs-3.25.0-3.noarch.rpm" && break || sleep 10
 done
 
 for i in {1..30}; do
