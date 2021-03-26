@@ -46,7 +46,8 @@ tmsh modify auth user admin shell bash
 
 tmsh save sys config
 rm -f /config/custom-config.sh
-
+sleep 60
+bigstart restart restnoded
 EOF
 
 source /usr/lib/bigstart/bigip-ready-functions
