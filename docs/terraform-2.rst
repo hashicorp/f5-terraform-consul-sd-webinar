@@ -32,7 +32,16 @@ On the Ubuntu host run the following commands
   $ terraform init
   $ terraform plan
   $ terraform apply
-  
+
+.. note::   
+   If you see an error similar to
+
+   .. code-block::
+     
+     Error: Error updating json  Consul_SD: HTTP 401 :: {"code":401,"message":"Authorization failed: no user authentication header or token detected. Uri:http://localhost:8100/mgmt/shared/appsvcs/task/fc42bcb0-c2a4-463e-b258-a2b480339fcb Referrer:192.0.2.10 Sender:192.0.2.10","referer":"192.0.2.10","restOperationId":2174351,"kind":":resterrorresponse"} 
+ 
+   You can re-run the command it and should proceed normally.
+
 In this scenario we are executing a shell script that will
 deploy the "nginx.json" declaration that is configured to use Consul's API for
 service discovery.
