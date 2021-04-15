@@ -11,15 +11,15 @@ resource "null_resource" "admin-shadow" {
 }
 
 data "template_file" "f5_init" {
-  template = "${file("../scripts/f5.tpl")}"
+  template = file("../scripts/f5.tpl")
 
   vars = {
     encrypted_password = chomp(file("admin.shadow"))
   }
-  depends_on = [null_resource.admin-shadow]  
+  depends_on = [null_resource.admin-shadow]
 }
 
-module bigip {
+module "bigip" {
   count                  = 1
   source                 = "git::https://github.com/f5devcentral/terraform-aws-bigip-module?ref=0.9"
   prefix                 = "${var.prefix}-f5-bigip"
