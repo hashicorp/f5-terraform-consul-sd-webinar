@@ -7,7 +7,11 @@ In the left menu find "Auto Scaling Groups"
 
 .. image:: ./images/aws-auto-scaling-menu.png
 
-Under the "Actions" menu select "Edit"
+Find the Auto Scaling Group and click on the name.
+
+.. image:: ./images/aws-auto-scaling-select.png
+
+Click on "Edit"
 
 .. image:: ./images/aws-auto-scaling-edit.png
 
