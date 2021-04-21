@@ -106,6 +106,6 @@ This partition was created by the "nginx.json" that contains the following.
 	}
 
 
-Once the partition is selected you should observe there is a pool named "web_pool" and there is a single pool member.  In the next step we will increase the number of NGINX nodes and you will see the change reflected on the BIG-IP.   
+Once the partition is selected you should observe there is a pool named "web_pool" and there are two pool members.  In the next step we will increase the number of NGINX nodes and you will see the change reflected on the BIG-IP.   
 
 
