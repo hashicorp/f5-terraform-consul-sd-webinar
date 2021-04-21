@@ -19,7 +19,7 @@ BIG-IP
 
 .. image:: ./images/terraform-2-big-ip.png
 
-You may have to wait a few minutes before you can login.	   
+You may have to wait a few minutes (~5 minutes) before you can login.	   
 
 Deploy AS3 Declaration
 ----------------------
