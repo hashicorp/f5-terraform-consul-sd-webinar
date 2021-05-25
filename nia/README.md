@@ -8,15 +8,18 @@ In this directory we will use the utility `consul-terraform-sync` that will comm
 
 ## Running this example
 
-This assumes that you have already run the existing demonstration of running "terraform apply" in both the "terraform" and "as3" directories.
+This assumes that you have already run the existing demonstration of running "terraform apply" in both the "terraform" directory.
 
-Start in the "as3" directory.  Run the command:
+Start in the "fast" directory.  Run the command:
 
 ```
-$ TF_VAR_declaration=event.json terraform apply
+$ terraform apply
 ```
+The "fast" directory will upload a FAST template that will configure the BIG-IP to use Event-Driven Service Discovery.
 
-This will update the configuration of the BIG-IP to no longer communicate with Consul.  Instead it will expect that it will be receiving updates from `consul-terraform-sync`.
+This will update the configuration of the BIG-IP to no longer communicate with Consul.
+
+Instead it will expect that it will be receiving updates from `consul-terraform-sync`.
 
 In the "nia" directory run 
 ```

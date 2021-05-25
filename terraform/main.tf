@@ -48,6 +48,11 @@ resource "local_file" "tfvars-as3" {
   filename = "../as3/terraform.tfvars"
 }
 
+resource "local_file" "tfvars-fast" {
+  content  = data.template_file.tfvars.rendered
+  filename = "../fast/terraform.tfvars"
+}
+
 # Generate a tfvars file for "brownfield-approach" installation
 resource "local_file" "tfvars-b1" {
   content  = data.template_file.tfvars.rendered

@@ -1,0 +1,60 @@
+title: Consul Service Discovery
+description: This template will create a virtual server that will use event driven service discovery
+definitions:
+  tenant:
+    title: Name of tenant
+    description: give a unique name for this tenant
+  app:
+    title: Application
+    description: give a unique name for this application
+  virtualAddress:
+    title: Virtual Address
+    description: IP addresses of virtual addresses (will create 80/443) 
+  virtualPort:
+    title: Virtual Port
+    description: Port that will be used
+    type: integer
+parameters:
+  uri: "http://10.0.0.100:8500"
+  service: "nginx"
+  virtualAddress: 10.0.0.200
+  virtualPort: 8080
+  tenant: "Consul_SD"
+  app: "Nginx"
+template: |
+  {
+    "class": "AS3",
+    "action": "deploy",
+    "persist": true,
+    "declaration": {
+        "class": "ADC",
+        "schemaVersion": "3.0.0",
+        "id": "urn:uuid:940bdb69-9bcd-4c5c-9a34-62777210b581",
+        "label": "Consul Webinar",
+        "remark": "Consul Webinar",
+        "{{tenant}}": {
+          "class": "Tenant",
+          "{{app}}": {
+              "class": "Application",
+              "webserver_vs": {
+                "class": "Service_HTTP",
+                "virtualAddresses": [
+                    "{{virtualAddress}}"
+                ],
+                "pool": "nginx_pool"
+              },
+              "nginx_pool": {
+                "class": "Pool",
+                "monitors": [
+                    "http"
+                ],
+                "members": [{
+              "servicePort": 80,
+              "addressDiscovery": "event"
+            }]
+              }
+          }
+        }
+    }
+  }
+ 

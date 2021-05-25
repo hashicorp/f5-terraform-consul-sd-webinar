@@ -24,8 +24,11 @@ pre_onboard_enabled:
 extension_packages:
   install_operations:
     - extensionType: as3
-      extensionVersion: 3.26.0
-      extensionUrl: file:///var/config/rest/downloads/f5-appsvcs-3.26.0-5.noarch.rpm
+      extensionVersion: 3.26.1
+      extensionUrl: file:///var/config/rest/downloads/f5-appsvcs-3.26.1-1.noarch.rpm
+    - extensionType: fast
+      extensionVersion: 1.8.0
+      extensionUrl: file:///var/config/rest/downloads/f5-appsvcs-templates-1.8.1-1.noarch.rpm
 extension_services:
     service_operations: []
 post_onboard_enabled:
@@ -54,12 +57,17 @@ source /usr/lib/bigstart/bigip-ready-functions
 wait_bigip_ready
 
 for i in {1..30}; do
-    curl -fv --retry 1 --connect-timeout 5 -L "https://github.com/F5Networks/f5-appsvcs-extension/releases/download/v3.26.0/f5-appsvcs-3.26.0-5.noarch.rpm" -o "/var/config/rest/downloads/f5-appsvcs-3.26.0-5.noarch.rpm" && break || sleep 10
+    curl -fv --retry 1 --connect-timeout 5 -L "https://github.com/F5Networks/f5-appsvcs-extension/releases/download/v3.26.1/f5-appsvcs-3.26.1-1.noarch.rpm" -o "/var/config/rest/downloads/f5-appsvcs-3.26.1-1.noarch.rpm" && break || sleep 10
 done
 
 for i in {1..30}; do
-    curl -fv --retry 1 --connect-timeout 5 -L "https://cdn.f5.com/product/cloudsolutions/f5-bigip-runtime-init/v1.2.0/dist/f5-bigip-runtime-init-1.2.0-1.gz.run" -o "/var/config/rest/downloads/f5-bigip-runtime-init-1.2.0-1.gz.run" && break || sleep 10
+    curl -fv --retry 1 --connect-timeout 5 -L "https://cdn.f5.com/product/cloudsolutions/f5-bigip-runtime-init/v1.2.1/dist/f5-bigip-runtime-init-1.2.1-1.gz.run" -o "/var/config/rest/downloads/f5-bigip-runtime-init-1.2.1-1.gz.run" && break || sleep 10
 done
-bash /var/config/rest/downloads/f5-bigip-runtime-init-1.2.0-1.gz.run -- '--cloud aws --skip-verify --skip-toolchain-metadata-sync'
+
+for i in {1..30}; do
+    curl -fv --retry 1 --connect-timeout 5 -L "https://github.com/F5Networks/f5-appsvcs-templates/releases/download/v1.8.1/f5-appsvcs-templates-1.8.1-1.noarch.rpm" -o "/var/config/rest/downloads/f5-appsvcs-templates-1.8.1-1.noarch.rpm" && break || sleep 10
+done
+
+bash /var/config/rest/downloads/f5-bigip-runtime-init-1.2.1-1.gz.run -- '--cloud aws --skip-verify --skip-toolchain-metadata-sync'
 
 f5-bigip-runtime-init --config-file /config/cloud/runtime-init-conf.yaml
