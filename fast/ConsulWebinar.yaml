@@ -9,7 +9,7 @@ definitions:
     description: give a unique name for this application
   virtualAddress:
     title: Virtual Address
-    description: IP addresses of virtual addresses (will create 80/443) 
+    description: IP addresses of virtual addresses (will create 80/443)
   virtualPort:
     title: Virtual Port
     description: Port that will be used
@@ -38,6 +38,7 @@ template: |
               "class": "Application",
               "webserver_vs": {
                 "class": "Service_HTTP",
+                "virtualPort": {{virtualPort}},
                 "virtualAddresses": [
                     "{{virtualAddress}}"
                 ],
@@ -57,4 +58,3 @@ template: |
         }
     }
   }
- 
