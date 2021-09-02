@@ -20,7 +20,7 @@ terraform_provider "bigip" {
 task {
   name = "AS3"
   description = "BIG-IP example"
-  source = "../../bigip-example"
+  source = "./bigip-example"
   providers = ["bigip"]
   services = ["nginx"]
 }
