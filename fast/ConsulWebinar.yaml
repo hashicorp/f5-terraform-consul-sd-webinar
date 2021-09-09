@@ -42,7 +42,11 @@ template: |
                 "virtualAddresses": [
                     "{{virtualAddress}}"
                 ],
-                "pool": "nginx_pool"
+                "pool": "nginx_pool",
+                "persistenceMethods": [],
+                "profileMultiplex": {
+                "bigip": "/Common/oneconnect"
+              }
               },
               "nginx_pool": {
                 "class": "Pool",
