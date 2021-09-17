@@ -15,7 +15,7 @@ variable "f5_username" {
 variable "f5_ami_search_name" {
   description = "BIG-IP AMI name to search for"
   type        = string
-  default     = "F5 BIGIP-15.1.2* PAYG-Good 25Mbps*"
+  default     = "F5 BIGIP-16.1.0* PAYG-Good 25Mbps*"
 }
 variable "allow_from" {
   description = "IP Address/Network to allow traffic from (i.e. 192.0.2.11/32)"

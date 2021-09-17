@@ -21,7 +21,7 @@ data "template_file" "f5_init" {
 
 module "bigip" {
   count                  = 1
-  source                 = "git::https://github.com/f5devcentral/terraform-aws-bigip-module?ref=0.9"
+  source                 = "git::https://github.com/f5devcentral/terraform-aws-bigip-module?ref=v0.9.6"
   prefix                 = "${var.prefix}-f5-bigip"
   ec2_instance_type      = "m5.large"
   ec2_key_name           = aws_key_pair.demo.key_name
