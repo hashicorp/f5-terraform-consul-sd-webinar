@@ -46,7 +46,7 @@ The `terraform` directory has tf files for creating instances for consul, f5, ia
 
 This demo has been developed on Ubuntu 18.04 and Mac OS.  
 
-- terraform 0.13
+- terraform 1.0.7
 - aws cli (including credentials to an AWS account)
 - openssl
 - Python passlib (for Mac OS users)
@@ -118,7 +118,7 @@ Folder as3 has three files, `main.tf`, `nginx.json` and `variables.tf`. `main.tf
 
 
 ### Product Versions
-- Terraform 0.13
-- Consul 1.9.0
-- BIG-IP image used is 15.1.2 version
-- AS3 rpm used is [3.25.0 version](https://github.com/F5Networks/f5-appsvcs-extension/releases/download/v3.25.0/f5-appsvcs-3.25.0-3.noarch.rpm)
+- Terraform 1.0.7
+- Consul 1.10.2
+- BIG-IP image used is 16.1.0 version
+- AS3 rpm used is [3.30.0 version](https://github.com/F5Networks/f5-appsvcs-extension/releases/download/v3.30.0/f5-appsvcs-3.30.0-5.noarch.rpm)
