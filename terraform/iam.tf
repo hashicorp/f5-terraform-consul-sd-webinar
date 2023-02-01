@@ -1,3 +1,6 @@
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: MPL-2.0
+
 resource "aws_iam_role_policy" "consul" {
   name = "${var.prefix}-f5-consul-policy"
   role = aws_iam_role.consul.id

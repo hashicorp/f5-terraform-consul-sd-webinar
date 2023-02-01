@@ -1,3 +1,6 @@
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: MPL-2.0
+
 resource "aws_autoscaling_group" "nginx" {
   name                 = "${var.prefix}-nginx-asg"
   launch_configuration = aws_launch_configuration.nginx.name

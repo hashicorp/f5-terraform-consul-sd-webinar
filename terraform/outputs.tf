@@ -1,3 +1,6 @@
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: MPL-2.0
+
 output "F5_IP" {
   value = module.bigip.0.mgmtPublicIP[0]
 }
