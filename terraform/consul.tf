@@ -1,3 +1,6 @@
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: MPL-2.0
+
 resource "aws_instance" "consul" {
   ami                    = data.aws_ami.ubuntu.id
   instance_type          = "m5.large"
