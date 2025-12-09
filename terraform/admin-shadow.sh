@@ -1,5 +1,5 @@
 #!/bin/bash
-# Copyright (c) HashiCorp, Inc.
+# Copyright IBM Corp. 2019, 2023
 # SPDX-License-Identifier: MPL-2.0
 
 # generate sha512 encrypted password
